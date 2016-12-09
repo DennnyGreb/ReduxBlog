@@ -1,0 +1,140 @@
+@white: #fff;
+@black: #000;
+@main-grey: #37424C;
+@main-dark: #242B32;
+
+@import "reset.less";
+
+.a-reset
+{
+    cursor: pointer;
+}
+
+.a-reset-hover
+{
+    text-decoration: none;
+}
+
+/*Main template*/
+header
+{
+    background-color: @main-dark;
+    border-radius: 0px;
+    font-family: 'Open Sans', sans-serif;
+    .main-header
+    {
+        color: @white;
+        font-family: 'PT Serif', serif;
+        font-size: 39px;
+        text-transform: uppercase;
+        margin-top: 10px;
+    }
+
+    .main-header,
+    .main-nav,
+    .main-nav-li
+    {
+        display: inline-block;
+    }
+
+    .main-nav
+    {
+        float: right;
+        margin-top: 10px;
+        a
+        {
+            .a-reset;
+            color: @white;
+            padding: 20px 10px;
+            font-weight: normal;
+            font-size: 20px;
+            line-height: 30px;
+            padding-left: 10px;
+            padding-right: 15px;
+        }
+        a:hover
+        {
+            color: @white;
+            .a-reset-hover;       
+        }
+    }
+
+    .sub-header
+    {
+        padding: 55px 0px 55px 0px;
+    }
+}
+
+#header
+{
+    border-radius: 0px;
+    margin-bottom: 0px;
+}
+
+
+.first-section
+{
+    background-color: @main-grey;
+    font-family: 'Open Sans', sans-serif;
+    .sub-header2
+    {
+        padding: 20px 0px;
+        .searchbutton 
+        {
+            width: 35px;
+            height: 33px;
+            float: right;
+            border: none;
+            outline: 0;
+            background-color: #242B32;
+            border-top-left-radius: 15px;
+            -webkit-border-bottom-left-radius: 15px;
+            -moz-border-radius-bottomleft: 15px;
+            border-bottom-left-radius: 15px;
+            i
+            {
+                color: #b6bfc8;
+                font-size: 19px;
+                margin-left: 5px;
+                margin-top: 1px;
+            }
+        }
+
+        .blog-input
+        {
+            margin-bottom: 21px;
+            background-color: @main-dark;
+            color: @white;
+            float: right;
+            height: 28px;
+            border: none;
+            line-height: 22px;
+            width: 160px;
+            height: 33px;
+            font-size: 16px;
+            -webkit-border-top-right-radius: 15px;
+            -moz-border-radius-topright: 15px;
+            border-top-right-radius: 15px;
+            -webkit-border-bottom-right-radius: 15px;
+            -moz-border-radius-bottomright: 15px;
+            border-bottom-right-radius: 15px;
+            outline: none;
+        }
+
+        .blog-input:focus
+        {
+            border: none;
+        }
+
+        .blog-link
+        {
+            .a-reset;
+            color: #ccc;
+            font-size: 20px;
+        }
+        .blog-link:hover
+        {
+            .a-reset-hover;
+        }
+    }
+}

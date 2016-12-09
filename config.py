@@ -44,3 +44,4 @@ DATABASE_URI = '%s://%s:%s@%s:%s/%s' % (ENGINE,
                                         HOST,
                                         PORT,
                                         DB_NAME,)
+
