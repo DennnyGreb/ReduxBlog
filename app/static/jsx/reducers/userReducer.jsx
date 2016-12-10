@@ -6,11 +6,13 @@ export default function reducer(state={
     },
     text: "default"
   }, action) {
-
-    switch (action.type) {
-      case "ADD_INFO": {
-        return {...state, text: action.payload.text}
-      }
+    console.log(action);
+    if(action.type === "ADD_INFO") {
+      console.log("I am in if!!!!!");
+        return {...state, text: action.payload.text};
     }
-    return state
+    else{
+      console.log("I am in else");
+      return state
+    }
 }

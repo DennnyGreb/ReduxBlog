@@ -28980,7 +28980,7 @@
 	        null,
 	        _react2.default.createElement(
 	          "button",
-	          { onClick: _userActions.fetchUser },
+	          { onClick: this.fetchUser.bind(this) },
 	          "Click"
 	        ),
 	        _react2.default.createElement(
@@ -29007,8 +29007,10 @@
 	});
 	exports.fetchUser = fetchUser;
 	function fetchUser() {
+	  console.log("I am in action!");
+	  var ADD_INFO = "ADD_INFO";
 	  return {
-	    type: "ADD_INFO",
+	    type: ADD_INFO,
 	    payload: {
 	      text: "I have benn reduced!!!"
 	    }
@@ -29039,15 +29041,15 @@
 
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 
-	var _reducers = __webpack_require__(281);
+	var _userReducer = __webpack_require__(281);
 
-	var _reducers2 = _interopRequireDefault(_reducers);
+	var _userReducer2 = _interopRequireDefault(_userReducer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var middleware = (0, _redux.applyMiddleware)((0, _reduxPromiseMiddleware2.default)(), _reduxThunk2.default, (0, _reduxLogger2.default)());
 
-	exports.default = (0, _redux.createStore)(_reducers2.default, middleware);
+	exports.default = (0, _redux.createStore)(_userReducer2.default, middleware);
 
 /***/ },
 /* 272 */
@@ -30136,119 +30138,6 @@
 
 /***/ },
 /* 281 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _redux = __webpack_require__(248);
-
-	var _tweetReducer = __webpack_require__(282);
-
-	var _tweetReducer2 = _interopRequireDefault(_tweetReducer);
-
-	var _userReducer = __webpack_require__(283);
-
-	var _userReducer2 = _interopRequireDefault(_userReducer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = (0, _redux.combineReducers)({
-	  tweets: _tweetReducer2.default,
-	  user: _userReducer2.default
-	});
-
-/***/ },
-/* 282 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = reducer;
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-	function reducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-	    tweets: [],
-	    fetching: false,
-	    fetched: false,
-	    error: null
-	  };
-	  var action = arguments[1];
-
-
-	  switch (action.type) {
-	    case "FETCH_TWEETS":
-	      {
-	        return _extends({}, state, { fetching: true });
-	      }
-	    case "FETCH_TWEETS_REJECTED":
-	      {
-	        return _extends({}, state, { fetching: false, error: action.payload });
-	      }
-	    case "FETCH_TWEETS_FULFILLED":
-	      {
-	        return _extends({}, state, {
-	          fetching: false,
-	          fetched: true,
-	          tweets: action.payload
-	        });
-	      }
-	    case "ADD_TWEET":
-	      {
-	        return _extends({}, state, {
-	          tweets: [].concat(_toConsumableArray(state.tweets), [action.payload])
-	        });
-	      }
-	    case "UPDATE_TWEET":
-	      {
-	        var _ret = function () {
-	          var _action$payload = action.payload,
-	              id = _action$payload.id,
-	              text = _action$payload.text;
-
-	          var newTweets = [].concat(_toConsumableArray(state.tweets));
-	          var tweetToUpdate = newTweets.findIndex(function (tweet) {
-	            return tweet.id === id;
-	          });
-	          newTweets[tweetToUpdate] = action.payload;
-
-	          return {
-	            v: _extends({}, state, {
-	              tweets: newTweets
-	            })
-	          };
-	        }();
-
-	        if ((typeof _ret === "undefined" ? "undefined" : _typeof(_ret)) === "object") return _ret.v;
-	      }
-	    case "DELETE_TWEET":
-	      {
-	        return _extends({}, state, {
-	          tweets: state.tweets.filter(function (tweet) {
-	            return tweet.id !== action.payload;
-	          })
-	        });
-	      }
-	  }
-
-	  return state;
-	}
-
-/***/ },
-/* 283 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -30271,14 +30160,14 @@
 	  };
 	  var action = arguments[1];
 
-
-	  switch (action.type) {
-	    case "ADD_INFO":
-	      {
-	        return _extends({}, state, { text: action.payload.text });
-	      }
+	  console.log(action);
+	  if (action.type === "ADD_INFO") {
+	    console.log("I am in if!!!!!");
+	    return _extends({}, state, { text: action.payload.text });
+	  } else {
+	    console.log("I am in else");
+	    return state;
 	  }
-	  return state;
 	}
 
 /***/ }
