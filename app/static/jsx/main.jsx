@@ -8,8 +8,11 @@ import { Router,
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 
-import Layout from "./components/Layout.jsx";
 import store from "./store.jsx";
+
+import Layout from "./components/Layout.jsx";
+import Post from "./components/Post.jsx"
+
 import fetchUser from "./actions/userActions.jsx"
 
 
@@ -27,7 +30,10 @@ class APP extends React.Component{
       //Render main component
       return (
         <Provider store={ store }>
+            <div>
               <Header/>
+              <Post img-url="" main_post_header="Hello" second_post_header="hjsvfkjushl" post_text=",jbeuvhselrhli"/>
+            </div>
         </Provider>
         );
     }

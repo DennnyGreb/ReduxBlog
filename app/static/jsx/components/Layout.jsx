@@ -15,7 +15,6 @@ export default class Layout extends React.Component {
   }
 
   render() {
-      console.log(this.props.userText);
     return <div>
       <button onClick={ this.fetchUser.bind(this) }>Click</button>
       <h1>{this.props.userText}</h1>
