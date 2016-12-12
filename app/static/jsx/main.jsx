@@ -10,10 +10,9 @@ import { Provider } from "react-redux";
 
 import store from "./store.jsx";
 
-import Layout from "./components/Layout.jsx";
-import Post from "./components/Post.jsx"
-
-import fetchUser from "./actions/userActions.jsx"
+import Post from "./components/Post.jsx";
+import Header from "./components/Header.jsx";
+import PostPopup from "./components/PostPopup.jsx"
 
 
 class APP extends React.Component{
@@ -25,62 +24,18 @@ class APP extends React.Component{
         super(props);
     }
 
-
     render(){
       //Render main component
       return (
         <Provider store={ store }>
             <div>
               <Header/>
-              <Post img-url="" main_post_header="Hello" second_post_header="hjsvfkjushl" post_text=",jbeuvhselrhli"/>
+              <PostPopup/>
             </div>
         </Provider>
         );
     }
 }
-
-
-class Header extends React.Component {
-
-    constructor(props){
-      super(props);
-
-      this.state = {};
-    }
-
-    render() {
-
-      return(
-        <div>
-          <header id="header" className="navbar" role="navigation">
-            <div className="container">
-              <div className="sub-header">
-                  <h1 className="main-header">Tales</h1>
-                  <ul className="main-nav">
-                	  <li className="main-nav-li"><a>First</a></li>
-                	  <li className="main-nav-li"><a>Second</a></li>
-                	  <li className="main-nav-li"><a>Third</a></li>
-                </ul>
-              </div>
-            </div>
-          </header>
-          <section className="first-section">
-            <div className="container">
-              <div className="sub-header2">
-                <a className="blog-link">Blog</a>
-                <input placeholder="Search" className="blog-input"/>
-                <button className="searchbutton">
-                  <i className="glyphicon glyphicon-search"></i>
-                </button>
-              </div>
-            </div>
-          </section>
-          <Layout/>
-        </div>
-      );
-    }
-}
-
 
 const NotFound = () => (
   <h1>404.. This page is not found!</h1>)

@@ -4,10 +4,10 @@ export default function reducer(state={
       name: null,
       age: null,
     },
-    text: "default"
+    add: false
   }, action) {
-    if(action.type === "ADD_INFO") {
-        return {...state, text: action.payload.text};
+    if(action.type === "ADD_POST") {
+        return {...state, add: true};
     }
     else{
       return state

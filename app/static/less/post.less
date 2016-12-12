@@ -17,3 +17,124 @@
     border-radius: 50%;
     display: block;
 }
+
+/*Modal*/
+.modal-content
+{ 
+    .modal-header
+    {
+        background-color: @main-grey;
+        border-radius: 16px 16px 0 0;
+        padding: 30px;
+        text-align: center;
+
+        .create-post
+        {
+            margin-top: 0px;
+            color: #fff;
+            font-size: 35px;
+        }
+
+        .close
+        {
+            float: right;
+            width: 25px;
+        }
+
+        .post-icon
+        {
+            color: #fff;
+            font-size: 60px;
+        }
+    }
+
+    .modal-body
+    {
+         .post-inputs
+         {
+             text-align: center;
+         }
+
+        .main-input
+        {
+            border: none;
+            margin: 15px;
+            width: 70%;
+            line-height: 3;
+            border-radius: 5px;
+            padding-left: 15px;
+            background-color: #F5F7F6;
+            outline: 0;
+            -webkit-appearance: none;
+        }
+
+        textarea.main-input
+        {
+            line-height: 20px;
+            margin-top: 25px;
+            padding-top: 5px;
+        }
+
+        .select-div
+        {
+            text-align: center;
+        }
+
+        .modal-footer
+        {
+            text-align: center;
+            .edit-modal-button
+            {
+                color: @white;
+                display: inline-block;
+                margin: 0px 10px;
+                background-image: linear-gradient(to bottom, #69bc87 0%, #48a068 100%);
+                background-repeat: repeat-x;
+                border-color: #449963;
+                margin-top: 35px;
+                font-size: 16px;
+                width: 100px;
+                height: 35px;
+                text-align: center;
+                border: 1px solid transparent;
+                border-radius: 4px;
+                font-size: 14px;
+                font-weight: 400;
+                cursor: pointer;
+            }
+
+            .edit-modal-button:hover
+            {
+                background-color: #48a068;
+                background-position: 0 -15px;
+            }
+
+            .edit-modal-button:active
+            {
+                background-color: #48a068;
+                border-color: #449963;
+                background-image: none;
+            }
+
+            .edit-modal-button:focus
+            {
+                outline: 0px;
+            }
+
+            .edit-modal-button span
+            {
+                position: relative;
+                top: 9px;   
+            }
+    }
+    }
+}
+
+.modal-dialog
+{
+    .modal-content
+    {
+        border-radius: 20px;
+    }
+}
+/*End of modal*/
