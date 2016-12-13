@@ -30333,10 +30333,11 @@
 	  return function saveUsers() {
 	    _store2.default.dispatch(function (dispatch) {
 	      _store2.default.dispatch({ type: 'START_SAVE_POST' });
-	      _axios2.default.post('/add_post', {
+	      _axios2.default.post('/PostController', {
 	        data: data
 	      }).then(function (response) {
-	        _store2.default.dispatch({ type: 'SAVE_POST' });
+	        //store.dispatch({type: 'SAVE_POST'});
+	        console.log(response);
 	      }).catch(function (error) {
 	        _store2.default.dispatch({ type: 'ERROR_SAVE_POST' });
 	      });
