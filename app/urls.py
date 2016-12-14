@@ -4,6 +4,7 @@
 """
     This module is for URL routing.
 """
+
 import json
 
 from flask import request, render_template, redirect, url_for, session
@@ -11,29 +12,18 @@ from flask_login import (LoginManager, login_user, login_required,
                          logout_user, current_user)
 
 from app import app
-from app.controllers.admin_controller import AdminController
-from app.controllers.login_form import LoginForm
-from app.models.user import User
+from app.models.post import Post
 
+from app.controllers.post_controller import PostController
 
-login_manager = LoginManager()
-# provide default view method for attempts of non logged in
-# users to visit protected by login pages:
-login_manager.login_view = 'login'
-
-login_manager.init_app(app)
-
-_admin_controller = AdminController()
-
-
-@app.route('/users/all')
-#@login_required
-def list_all_users():
-    """Return web-page with the list of all users in the database."""
-    return _admin_controller.get_all_users()
-
+_post_controller = PostController()
 
 @app.route('/', methods=['GET'])
 def render_base():
     """ Root routing function """
     return render_template("index.html")
+
+@app.route('/PostController', methods=['POST'])
+def save_info():
+    """ Root routing function """
+    return _post_controller.save_post(request)

@@ -15,4 +15,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 app.secret_key = 'super_secret'
 db = SQLAlchemy(app)
 
-from app import urls, views, models
+from app import urls, models
