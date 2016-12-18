@@ -6,7 +6,7 @@ export default function addPost(data) {
   return function saveUsers() {
     store.dispatch((dispatch) => {
 			store.dispatch({type: 'START_SAVE_POST'});
-			axios.post('/PostController', {
+			axios.post('/save_post', {
           data: data
   			})
   			.then(function (response) {

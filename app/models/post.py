@@ -27,7 +27,7 @@ class Post(db.Model):
     __tablename__ = 'POSTS'
     __searchable__ = ['post_name']
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
     post_name = db.Column(db.String(255), nullable=False, unique=True)
     post_img = db.Column(db.String(255))
     post_sub = db.Column(db.String(255), nullable=False)

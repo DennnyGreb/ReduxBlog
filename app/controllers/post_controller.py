@@ -7,18 +7,16 @@ Controller for blog post functionality.
 
 from flask import Flask
 
-from json import dumps
+from json import dumps, loads
 
-from flask_restful import Resource, Api
 
 from app import db
 from app.models.post import Post
 
 app = Flask(__name__)
-api = Api(app)
 
 
-class PostController(Resource):
+class PostController(object):
     """Controller, that provide post functionality."""
 
 
@@ -26,10 +24,13 @@ class PostController(Resource):
         """
         Recieve json data of post and add it to db. 
         """
-        print "Blabla"
-        print request.data
-        return dumps(
-                {
-                'status': 'success'
-                }
-            )
+        dict_data = loads(request.data)
+        try: 
+            db.session.add(Post(post_name=dict_data['data']['post_name'],
+            post_img=dict_data['data']['post_img'],
+            post_sub=dict_data['data']['post_sub'],
+            post_desc=dict_data['data']['post_desc']))
+            return dumps({'status': 'success'})
+        except Exception, error:
+            print error
+            return dumps({'status': 'error'})

@@ -23,7 +23,7 @@ def render_base():
     """ Root routing function """
     return render_template("index.html")
 
-@app.route('/PostController', methods=['POST'])
+@app.route('/save_post', methods=['POST'])
 def save_info():
     """ Root routing function """
     return _post_controller.save_post(request)
