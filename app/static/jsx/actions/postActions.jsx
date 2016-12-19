@@ -10,11 +10,29 @@ export default function addPost(data) {
           data: data
   			})
   			.then(function (response) {
-  				//store.dispatch({type: 'SAVE_POST'});
+  				store.dispatch({type: 'POST_SAVED', payload: data.post_name});
 					console.log(response);
   			})
   			.catch(function (error) {
   				store.dispatch({type: 'ERROR_SAVE_POST'});
+  			});
+		});
+  }
+}
+
+export function getPosts(data) {
+  return function getPost() {
+    store.dispatch((dispatch) => {
+			store.dispatch({type: 'START_GETTING_POST'}); 
+			axios.post('/get_posts', {
+          data: data
+  			})
+  			.then(function (response) {
+  				store.dispatch({type: 'POST_GOT', payload: response.data});
+					console.log(response);
+  			})
+  			.catch(function (error) {
+  				store.dispatch({type: 'ERROR_GETTING_POST'});
   			});
 		});
   }

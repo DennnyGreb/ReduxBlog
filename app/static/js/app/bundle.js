@@ -76,6 +76,10 @@
 
 	var _PostPopup2 = _interopRequireDefault(_PostPopup);
 
+	var _PostSection = __webpack_require__(305);
+
+	var _PostSection2 = _interopRequireDefault(_PostSection);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -108,7 +112,8 @@
 	          'div',
 	          null,
 	          _react2.default.createElement(_Header2.default, null),
-	          _react2.default.createElement(_PostPopup2.default, null)
+	          _react2.default.createElement(_PostPopup2.default, null),
+	          _react2.default.createElement(_PostSection2.default, null)
 	        )
 	      );
 	    }
@@ -30068,7 +30073,7 @@
 /* 281 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -30088,10 +30093,13 @@
 	  };
 	  var action = arguments[1];
 
-	  if (action.type === "ADD_POST") {
-	    return _extends({}, state, { add: true });
-	  } else {
-	    return state;
+	  switch (action.type) {
+	    case 'ADD_POST':
+	      return _extends({}, state, { add: true });
+	    case 'POST_GOT':
+	      return _extends({}, state, { post_info: action.payload, post_status: action.type });
+	    default:
+	      return state;
 	  }
 	}
 
@@ -30318,6 +30326,7 @@
 	  value: true
 	});
 	exports.default = addPost;
+	exports.getPosts = getPosts;
 
 	var _axios = __webpack_require__(285);
 
@@ -30336,10 +30345,26 @@
 	      _axios2.default.post('/save_post', {
 	        data: data
 	      }).then(function (response) {
-	        //store.dispatch({type: 'SAVE_POST'});
+	        _store2.default.dispatch({ type: 'POST_SAVED', payload: data.post_name });
 	        console.log(response);
 	      }).catch(function (error) {
 	        _store2.default.dispatch({ type: 'ERROR_SAVE_POST' });
+	      });
+	    });
+	  };
+	}
+
+	function getPosts(data) {
+	  return function getPost() {
+	    _store2.default.dispatch(function (dispatch) {
+	      _store2.default.dispatch({ type: 'START_GETTING_POST' });
+	      _axios2.default.post('/get_posts', {
+	        data: data
+	      }).then(function (response) {
+	        _store2.default.dispatch({ type: 'POST_GOT', payload: response.data });
+	        console.log(response);
+	      }).catch(function (error) {
+	        _store2.default.dispatch({ type: 'ERROR_GETTING_POST' });
 	      });
 	    });
 	  };
@@ -31718,6 +31743,103 @@
 			return PostPopup;
 	}(_react2.default.Component)) || _class);
 	exports.default = PostPopup;
+
+/***/ },
+/* 305 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(241);
+
+	var _axios = __webpack_require__(285);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _store = __webpack_require__(269);
+
+	var _store2 = _interopRequireDefault(_store);
+
+	var _postActions = __webpack_require__(284);
+
+	var _Post = __webpack_require__(282);
+
+	var _Post2 = _interopRequireDefault(_Post);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PostSection = (_dec = (0, _reactRedux.connect)(function (store) {
+	  return {
+	    post_info: store.user.post_info,
+	    post_status: store.user.post_status
+	  };
+	}), _dec(_class = function (_React$Component) {
+	  _inherits(PostSection, _React$Component);
+
+	  function PostSection(props) {
+	    _classCallCheck(this, PostSection);
+
+	    var _this = _possibleConstructorReturn(this, (PostSection.__proto__ || Object.getPrototypeOf(PostSection)).call(this, props));
+
+	    _this.state = { postName: '' };
+	    _this.postCondition = _this.postCondition.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(PostSection, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var data = { post_name: 'Love' };
+	      this.props.dispatch((0, _postActions.getPosts)(data));
+	    }
+	  }, {
+	    key: 'postCondition',
+	    value: function postCondition() {
+	      if (this.props.post_status === 'POST_GOT') {
+	        return _react2.default.createElement(_Post2.default, { main_post_header: this.props.post_info.post_name,
+	          second_post_header: this.props.post_info.post_sub,
+	          post_text: this.props.post_info.post_desc });
+	      }
+	      return null;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'section',
+	        { className: 'post-section' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Post Section'
+	        ),
+	        this.postCondition
+	      );
+	    }
+	  }]);
+
+	  return PostSection;
+	}(_react2.default.Component)) || _class);
+	exports.default = PostSection;
 
 /***/ }
 /******/ ]);

@@ -1,0 +1,51 @@
+import React from 'react';
+
+import { connect } from 'react-redux';
+
+import axios from 'axios';
+
+import store from "../store.jsx";
+import { getPosts } from '../actions/postActions.jsx';
+
+import Post from './Post.jsx';
+
+
+@connect((store) => {
+  return {
+    post_info: store.user.post_info,
+    post_status: store.user.post_status,
+  };
+})
+export default class PostSection extends React.Component
+{
+    constructor(props){
+        super(props);
+        this.state = {postName: ''};
+        this.postCondition = this.postCondition.bind(this);
+    }
+
+    componentWillMount(){
+      let data = { post_name: 'Love' }
+      this.props.dispatch(getPosts(data));
+    }
+
+    postCondition(){
+      if(this.props.post_status === 'POST_GOT'){
+        return (
+          <Post main_post_header={ this.props.post_info.post_name }
+              second_post_header={ this.props.post_info.post_sub }
+              post_text={ this.props.post_info.post_desc }/>
+        );
+      }
+      return null;
+    }
+
+    render(){
+        return (
+				<section className="post-section">
+            <h1>Post Section</h1>
+            {this.postCondition}
+				</section>
+        );
+    }
+}

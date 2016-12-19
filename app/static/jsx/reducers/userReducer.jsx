@@ -6,10 +6,13 @@ export default function reducer(state={
     },
     add: false
   }, action) {
-    if(action.type === "ADD_POST") {
+    switch(action.type)
+    {
+      case 'ADD_POST':
         return {...state, add: true};
-    }
-    else{
-      return state
+      case 'POST_GOT':
+        return {...state, post_info: action.payload, post_status: action.type};
+      default:
+        return state;
     }
 }

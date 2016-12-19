@@ -18,10 +18,10 @@ export default class PostPopup extends React.Component
     constructor(props){
         super(props);
         this.state = {
-			post_name: "",
-			post_img: "",
-			post_sub: "",
-			post_desc: "",
+					post_name: "",
+					post_img: "",
+					post_sub: "",
+					post_desc: "",
         };
         this.changeValue = this.changeValue.bind(this);
 		this.confirm = this.confirm.bind(this);

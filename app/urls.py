@@ -25,5 +25,10 @@ def render_base():
 
 @app.route('/save_post', methods=['POST'])
 def save_info():
-    """ Root routing function """
+    """ Function for post info saving """
     return _post_controller.save_post(request)
+
+@app.route('/get_posts', methods=['POST'])
+def get_info():
+    """ Function for post info getting """
+    return _post_controller.get_posts(request)
