@@ -14,6 +14,7 @@ import Post from './Post.jsx';
   return {
     post_info: store.user.post_info,
     post_status: store.user.post_status,
+    postComponent: null
   };
 })
 export default class PostSection extends React.Component
@@ -21,7 +22,6 @@ export default class PostSection extends React.Component
     constructor(props){
         super(props);
         this.state = {postName: ''};
-        this.postCondition = this.postCondition.bind(this);
     }
 
     componentWillMount(){
@@ -29,22 +29,28 @@ export default class PostSection extends React.Component
       this.props.dispatch(getPosts(data));
     }
 
-    postCondition(){
+    /*postCondition(){
       if(this.props.post_status === 'POST_GOT'){
-        return (
-          <Post main_post_header={ this.props.post_info.post_name }
+        this.setState({
+          postComponent: <Post main_post_header={ this.props.post_info.post_name }
               second_post_header={ this.props.post_info.post_sub }
               post_text={ this.props.post_info.post_desc }/>
-        );
+        });
       }
       return null;
-    }
+    }*/
 
     render(){
         return (
 				<section className="post-section">
             <h1>Post Section</h1>
-            {this.postCondition}
+            {
+              this.props.post_status === "POST_GOT"
+              ? <Post main_post_header={ this.props.post_info.post_name }
+                second_post_header={ this.props.post_info.post_sub }
+                post_text={ this.props.post_info.post_desc }/>
+              : null
+            }
 				</section>
         );
     }

@@ -31790,7 +31790,8 @@
 	var PostSection = (_dec = (0, _reactRedux.connect)(function (store) {
 	  return {
 	    post_info: store.user.post_info,
-	    post_status: store.user.post_status
+	    post_status: store.user.post_status,
+	    postComponent: null
 	  };
 	}), _dec(_class = function (_React$Component) {
 	  _inherits(PostSection, _React$Component);
@@ -31801,7 +31802,6 @@
 	    var _this = _possibleConstructorReturn(this, (PostSection.__proto__ || Object.getPrototypeOf(PostSection)).call(this, props));
 
 	    _this.state = { postName: '' };
-	    _this.postCondition = _this.postCondition.bind(_this);
 	    return _this;
 	  }
 
@@ -31811,16 +31811,18 @@
 	      var data = { post_name: 'Love' };
 	      this.props.dispatch((0, _postActions.getPosts)(data));
 	    }
-	  }, {
-	    key: 'postCondition',
-	    value: function postCondition() {
-	      if (this.props.post_status === 'POST_GOT') {
-	        return _react2.default.createElement(_Post2.default, { main_post_header: this.props.post_info.post_name,
-	          second_post_header: this.props.post_info.post_sub,
-	          post_text: this.props.post_info.post_desc });
+
+	    /*postCondition(){
+	      if(this.props.post_status === 'POST_GOT'){
+	        this.setState({
+	          postComponent: <Post main_post_header={ this.props.post_info.post_name }
+	              second_post_header={ this.props.post_info.post_sub }
+	              post_text={ this.props.post_info.post_desc }/>
+	        });
 	      }
 	      return null;
-	    }
+	    }*/
+
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -31832,7 +31834,9 @@
 	          null,
 	          'Post Section'
 	        ),
-	        this.postCondition
+	        this.props.post_status === "POST_GOT" ? _react2.default.createElement(_Post2.default, { main_post_header: this.props.post_info.post_name,
+	          second_post_header: this.props.post_info.post_sub,
+	          post_text: this.props.post_info.post_desc }) : null
 	      );
 	    }
 	  }]);
