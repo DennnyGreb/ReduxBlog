@@ -1,0 +1,13 @@
+-- switch to ur db
+USE POSTS;
+
+-- table Post
+DROP TABLE IF EXISTS USER;
+CREATE TABLE IF NOT EXISTS `USER` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+  `full_name` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password_hash` VARCHAR(255) NOT NULL
+);
+
+SHOW TABLES;

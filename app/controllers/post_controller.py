@@ -19,7 +19,6 @@ app = Flask(__name__)
 class PostController(object):
     """Controller, that provide post functionality."""
 
-    _columns_to_query = (Post.post_name, Post.post_sub, Post.post_desc)
 
     def save_post(self, request):
         """Recieve json data of post and add it to db."""

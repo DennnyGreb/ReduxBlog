@@ -27,6 +27,19 @@ export default class PostSection extends React.Component
     componentWillMount(){
       let data = { post_name: 'Love' }
       this.props.dispatch(getPosts(data));
+      axios.post("/registration", {
+        data: {
+          full_name: "Denis Grebenets",
+          email: "dendendengrebenets@gmail.com",
+          password: "mypass"
+        }
+      })
+      .then(function(response){
+        console.log(response);
+      })
+      .catch(function(response){
+        console.log(response);
+      })
     }
 
     /*postCondition(){

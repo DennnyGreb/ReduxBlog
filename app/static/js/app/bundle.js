@@ -31810,6 +31810,17 @@
 	    value: function componentWillMount() {
 	      var data = { post_name: 'Love' };
 	      this.props.dispatch((0, _postActions.getPosts)(data));
+	      _axios2.default.post("/registration", {
+	        data: {
+	          full_name: "Denis Grebenets",
+	          email: "dendendengrebenets@gmail.com",
+	          password: "mypass"
+	        }
+	      }).then(function (response) {
+	        console.log(response);
+	      }).catch(function (response) {
+	        console.log(response);
+	      });
 	    }
 
 	    /*postCondition(){
