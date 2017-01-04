@@ -37,7 +37,9 @@ export default class Header extends React.Component {
                   <ul className="main-nav">
                 	  <li className="main-nav-li"><a>First</a></li>
                 	  <li className="main-nav-li"><a>Second</a></li>
-                	  <li className="main-nav-li"><a>Third</a></li>
+                	  <li className="main-nav-li">
+                      <a className="blog-link" data-toggle="modal" data-target="#myModalReg">Registration</a>
+                    </li>
                 </ul>
               </div>
             </div>

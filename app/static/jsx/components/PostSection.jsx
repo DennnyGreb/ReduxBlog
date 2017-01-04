@@ -27,11 +27,10 @@ export default class PostSection extends React.Component
     componentWillMount(){
       let data = { post_name: 'Love' }
       this.props.dispatch(getPosts(data));
-      axios.post("/registration", {
+      /*axios.post("/login", {
         data: {
-          full_name: "Denis Grebenets",
-          email: "dendendengrebenets@gmail.com",
-          password: "mypass"
+          full_name: "Denis Grebenets222",
+          password: "Hello"
         }
       })
       .then(function(response){
@@ -39,19 +38,8 @@ export default class PostSection extends React.Component
       })
       .catch(function(response){
         console.log(response);
-      })
+      })*/
     }
-
-    /*postCondition(){
-      if(this.props.post_status === 'POST_GOT'){
-        this.setState({
-          postComponent: <Post main_post_header={ this.props.post_info.post_name }
-              second_post_header={ this.props.post_info.post_sub }
-              post_text={ this.props.post_info.post_desc }/>
-        });
-      }
-      return null;
-    }*/
 
     render(){
         return (

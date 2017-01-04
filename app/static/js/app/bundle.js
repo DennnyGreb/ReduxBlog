@@ -80,6 +80,10 @@
 
 	var _PostSection2 = _interopRequireDefault(_PostSection);
 
+	var _Registration = __webpack_require__(306);
+
+	var _Registration2 = _interopRequireDefault(_Registration);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -113,7 +117,8 @@
 	          null,
 	          _react2.default.createElement(_Header2.default, null),
 	          _react2.default.createElement(_PostPopup2.default, null),
-	          _react2.default.createElement(_PostSection2.default, null)
+	          _react2.default.createElement(_PostSection2.default, null),
+	          _react2.default.createElement(_Registration2.default, null)
 	        )
 	      );
 	    }
@@ -30098,6 +30103,8 @@
 	      return _extends({}, state, { add: true });
 	    case 'POST_GOT':
 	      return _extends({}, state, { post_info: action.payload, post_status: action.type });
+	    case 'USER_REGISTRATED':
+	      return state;
 	    default:
 	      return state;
 	  }
@@ -30119,8 +30126,6 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRedux = __webpack_require__(241);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30277,8 +30282,8 @@
 	                  { className: 'main-nav-li' },
 	                  _react2.default.createElement(
 	                    'a',
-	                    null,
-	                    'Third'
+	                    { className: 'blog-link', 'data-toggle': 'modal', 'data-target': '#myModalReg' },
+	                    'Registration'
 	                  )
 	                )
 	              )
@@ -31810,30 +31815,19 @@
 	    value: function componentWillMount() {
 	      var data = { post_name: 'Love' };
 	      this.props.dispatch((0, _postActions.getPosts)(data));
-	      _axios2.default.post("/registration", {
+	      /*axios.post("/login", {
 	        data: {
-	          full_name: "Denis Grebenets",
-	          email: "dendendengrebenets@gmail.com",
-	          password: "mypass"
+	          full_name: "Denis Grebenets222",
+	          password: "Hello"
 	        }
-	      }).then(function (response) {
+	      })
+	      .then(function(response){
 	        console.log(response);
-	      }).catch(function (response) {
+	      })
+	      .catch(function(response){
 	        console.log(response);
-	      });
+	      })*/
 	    }
-
-	    /*postCondition(){
-	      if(this.props.post_status === 'POST_GOT'){
-	        this.setState({
-	          postComponent: <Post main_post_header={ this.props.post_info.post_name }
-	              second_post_header={ this.props.post_info.post_sub }
-	              post_text={ this.props.post_info.post_desc }/>
-	        });
-	      }
-	      return null;
-	    }*/
-
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -31855,6 +31849,236 @@
 	  return PostSection;
 	}(_react2.default.Component)) || _class);
 	exports.default = PostSection;
+
+/***/ },
+/* 306 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+
+	var _dec, _class;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(241);
+
+	var _userActions = __webpack_require__(307);
+
+	var _userActions2 = _interopRequireDefault(_userActions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Registration = function (_React$Component) {
+	    _inherits(Registration, _React$Component);
+
+	    function Registration(props) {
+	        _classCallCheck(this, Registration);
+
+	        return _possibleConstructorReturn(this, (Registration.__proto__ || Object.getPrototypeOf(Registration)).call(this, props));
+	    }
+
+	    _createClass(Registration, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                null,
+	                _react2.default.createElement(
+	                    "div",
+	                    { id: "myModalReg", className: "modal fade", role: "dialog" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "modal-dialog" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "modal-content" },
+	                            _react2.default.createElement(RegistrationHeader, null),
+	                            _react2.default.createElement(RegistrationBody, null)
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Registration;
+	}(_react2.default.Component);
+
+	exports.default = Registration;
+
+	var RegistrationHeader = function (_React$Component2) {
+	    _inherits(RegistrationHeader, _React$Component2);
+
+	    function RegistrationHeader(props) {
+	        _classCallCheck(this, RegistrationHeader);
+
+	        return _possibleConstructorReturn(this, (RegistrationHeader.__proto__ || Object.getPrototypeOf(RegistrationHeader)).call(this, props));
+	    }
+
+	    _createClass(RegistrationHeader, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "modal-header" },
+	                _react2.default.createElement(
+	                    "button",
+	                    { type: "button", className: "close", "data-dismiss": "modal" },
+	                    "\xD7"
+	                ),
+	                _react2.default.createElement(
+	                    "h3",
+	                    { className: "create-post" },
+	                    "Registration"
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "material-icons post-icon" },
+	                    "picture_in_picture"
+	                )
+	            );
+	        }
+	    }]);
+
+	    return RegistrationHeader;
+	}(_react2.default.Component);
+
+	var RegistrationBody = (_dec = (0, _reactRedux.connect)(function (store) {
+	    return {
+	        userText: store.user.text
+	    };
+	}), _dec(_class = function (_React$Component3) {
+	    _inherits(RegistrationBody, _React$Component3);
+
+	    function RegistrationBody(props) {
+	        _classCallCheck(this, RegistrationBody);
+
+	        var _this3 = _possibleConstructorReturn(this, (RegistrationBody.__proto__ || Object.getPrototypeOf(RegistrationBody)).call(this, props));
+
+	        _this3.state = {
+	            full_name: '',
+	            email: '',
+	            password: ''
+	        };
+	        _this3.confirm = _this3.confirm.bind(_this3);
+	        _this3.changeValue = _this3.changeValue.bind(_this3);
+	        return _this3;
+	    }
+
+	    _createClass(RegistrationBody, [{
+	        key: "confirm",
+	        value: function confirm(event) {
+	            var data = {
+	                full_name: this.state.full_name,
+	                email: this.state.email,
+	                password: this.state.password
+	            };
+	            this.props.dispatch((0, _userActions2.default)(data));
+	        }
+	    }, {
+	        key: "changeValue",
+	        value: function changeValue(event) {
+	            //Method, that make appropriate state variable for input value.
+	            var state = [];
+	            state[event.target.name] = event.target.value;
+	            this.setState(state);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                null,
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "modal-body" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "control-group post-inputs" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "controls" },
+	                            _react2.default.createElement("input", { type: "text", name: "full_name", placeholder: "Enter your full name",
+	                                className: "input-xlarge main-input", value: this.state.full_name, onChange: this.changeValue }),
+	                            _react2.default.createElement("input", { type: "email", name: "email", placeholder: "Enter your email",
+	                                className: "input-xlarge main-input", value: this.state.email, onChange: this.changeValue }),
+	                            _react2.default.createElement("input", { type: "password", name: "password", placeholder: "Enter your full password",
+	                                className: "input-xlarge main-input", value: this.state.password, onChange: this.changeValue })
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "modal-footer" },
+	                    _react2.default.createElement(
+	                        "button",
+	                        { name: "cancel", type: "submit", className: "btn edit-modal-button edit-close", "data-dismiss": "modal" },
+	                        "Cancel"
+	                    ),
+	                    _react2.default.createElement(
+	                        "button",
+	                        { name: "confirm", type: "submit", className: "btn edit-modal-button edit-confirm", onClick: this.confirm, "data-dismiss": "modal" },
+	                        "Confirm"
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return RegistrationBody;
+	}(_react2.default.Component)) || _class);
+
+/***/ },
+/* 307 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = registration;
+
+	var _axios = __webpack_require__(285);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _store = __webpack_require__(269);
+
+	var _store2 = _interopRequireDefault(_store);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function registration(data) {
+	  return function () {
+	    _store2.default.dispatch(function (dispatch) {
+	      _store2.default.dispatch({ type: 'START_REGISTRATION' });
+	      _axios2.default.post('/', {
+	        data: data
+	      }).then(function (response) {
+	        _store2.default.dispatch({ type: 'USER_REGISTRATED' });
+	        console.log(response);
+	      }).catch(function (error) {
+	        _store2.default.dispatch({ type: 'ERROR_REGISTRATION' });
+	      });
+	    });
+	  };
+	}
 
 /***/ }
 /******/ ]);

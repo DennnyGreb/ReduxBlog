@@ -7,18 +7,22 @@
 
 import json
 
-from flask import request, render_template, redirect, url_for, session
+from flask import request, render_template, redirect, url_for, session, g
 from flask_login import (LoginManager, login_user, login_required,
                          logout_user, current_user)
 
+from flask_httpauth import HTTPBasicAuth
+
 from app import app
 from app.models.post import Post
+from app.models.user import User
 
 from app.controllers.post_controller import PostController
 from app.controllers.auth_controller import AuthController
 
 _post_controller = PostController()
 _auth_controller = AuthController()
+auth = HTTPBasicAuth()
 
 @app.route('/', methods=['GET'])
 def render_base():
@@ -39,3 +43,8 @@ def get_info():
 def registrate():
     """ Function for post info getting """
     return _auth_controller.registration(request)
+
+@app.route('/login', methods=['POST'])
+def login():
+    """ Function for post info getting """
+    return _auth_controller.login(request)

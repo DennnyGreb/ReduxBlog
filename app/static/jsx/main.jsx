@@ -14,6 +14,7 @@ import Post from "./components/Post.jsx";
 import Header from "./components/Header.jsx";
 import PostPopup from "./components/PostPopup.jsx"
 import PostSection from "./components/PostSection.jsx"
+import Registration from "./components/Registration.jsx"
 
 
 class APP extends React.Component{
@@ -33,6 +34,7 @@ class APP extends React.Component{
               <Header/>
               <PostPopup/>
               <PostSection/>
+              <Registration/>
             </div>
         </Provider>
         );

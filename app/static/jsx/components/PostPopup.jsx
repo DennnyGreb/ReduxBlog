@@ -16,22 +16,22 @@ import addPost from '../actions/postActions.jsx';
 export default class PostPopup extends React.Component
 {
     constructor(props){
-        super(props);
-        this.state = {
-					post_name: "",
-					post_img: "",
-					post_sub: "",
-					post_desc: "",
-        };
-        this.changeValue = this.changeValue.bind(this);
-		this.confirm = this.confirm.bind(this);
+    	super(props);
+    	this.state = {
+				post_name: "",
+				post_img: "",
+				post_sub: "",
+				post_desc: "",
+    	};
+    	this.changeValue = this.changeValue.bind(this);
+			this.confirm = this.confirm.bind(this);
     }
 
 	changeValue(event) {
 	   //Method, that make appropriate state variable for input value.
-       let state = [];
-       state[event.target.name] = event.target.value;
-       this.setState(state);
+    	let state = [];
+    	state[event.target.name] = event.target.value;
+    	this.setState(state);
     }
 
 	confirm(event) {

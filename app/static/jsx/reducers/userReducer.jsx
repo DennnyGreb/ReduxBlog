@@ -12,6 +12,8 @@ export default function reducer(state={
         return {...state, add: true};
       case 'POST_GOT':
         return {...state, post_info: action.payload, post_status: action.type};
+      case 'USER_REGISTRATED':
+        return state;
       default:
         return state;
     }
